@@ -196,7 +196,18 @@ yarn dev
 - [Axios](https://axios-http.com)
 - [Vite](https://vitejs.dev)
 - [React Router](https://reactrouter.com/en/main)
-***
+- [Java](https://docs.oracle.com/en/java/)
+- [Spring Boot](https://docs.spring.io/spring-boot/docs/current/reference/html/)
+- [Spring Security](https://docs.spring.io/spring-security/reference/)
+- [MySQL](https://dev.mysql.com/doc/)
+- [Lombok](https://projectlombok.org/features/)
+- [Mapstruct](https://mapstruct.org/documentation/stable/reference/html/)
+- [Velocity](https://velocity.apache.org/engine/1.7/user-guide.html)
+- [Validation](https://jakarta.ee/specifications/validation/3.0/apidocs/)
+- [JUnit 4](https://junit.org/junit4/)
+- [Mockito](https://javadoc.io/doc/org.mockito/mockito-core/latest/index.html)
+- [Spring Framework](https://docs.spring.io/spring-framework/reference/)
+
 
 # Strangely - UI
 
@@ -323,7 +334,7 @@ vitest watch
 
 ## Opinionated Dev Environment
 
-- Use `Visual Studio Code - v1.82.2`.
+- Use `Visual Studio Code - v1.82.2` and 'IntelliJ IDEA -v2023.2'.
 - Install extensions
     - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
     - [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
