@@ -86,19 +86,46 @@ Strangely is designed to create a comfortable and welcoming platform for people 
 
 ## ▪️Usage Scenario <a name = "usage_scenario"></a>
 
-<p>1)	The users can register themselves on the signup page using their own email or can register with their google email.</p>
-<p>2)	Same users can login using those credentials or can login with google account after registering.</p>
-<p>3)	There is also the forgot password functionality provided in case user forgets their password, user can click on that option and get a reset password link after putting in his username.</p>
-<p>4)	After login the user will land on the homepage where they can see multiple categories already listed on the homepage. Users can also add a new category which they like and it will be added to the existing categories.</p>
-<p>5)	On the left hand panel of the homepage, there are 2 options for profile and connections. User can click on profile and change his User profile settings like username,email and phone number</p>
-<p>6)	By clicking on connections, User can see who they have connected and has a previous chat history with. </p>
-<p>7)	Now by clicking on individual caategories, user can see posts related to that category. He will land on the postpage where the user can see posts by different users or he can add his own post related to that category by simply putting a caption or uploading the image with it as well.</p>
-<p>8)   On each post their is a like,disliike,love and chat functionality where the first 3 emotes describe reaction to that post while the chat can be used to connect to that user who posted it.</p>
-<p>9)   On the postpage, on the left hand side their is categories section where user can go back to categories by clicking on that directly.</p>
-<p>10)  On the navbar, there is the homepage button to redirect back to homepage, connection button to redirect to chats and the logout button.</p>
-<p>11)  On the chat page, user can add their connections or delete them. They can chat with their connections individually via our messaging system.</p>
+##### ⏺  User Registration and Login:
+- **Sign Up with Ease:** Users can effortlessly register using their email or opt for a quicker sign-up with their Google account.
 
+- **Simple Login Process:** Once registered, users can log in using their chosen credentials or with their Google account.
 
+##### ⏺  Password Management:
+- **Forgot Password? No Worries:** If a user forgets their password, they can click on the "Forgot Password" option, enter their username, and receive a password reset link.
+
+##### ⏺  Homepage Exploration:
+- **Explore Categories:** Upon login, users will land on the homepage showcasing various categories. They can even add new categories that interest them.
+
+##### ⏺  User Profile Settings:
+- **Customize Your Profile:** A convenient left-hand panel offers options for "Profile" and "Connections." Users can click on "Profile" to easily modify settings such as username, email, and phone number.
+
+##### ⏺  Connections and Chat History:
+- **Stay Connected:** In the "Connections" section, users can see their connected contacts and review their chat history with them.
+
+##### ⏺  Category-specific Posts:
+- **Discover and Share:** Clicking on individual categories reveals related posts. Users can view posts by others or contribute by adding their own with captions or images.
+
+##### ⏺  Interactive Post Engagement:
+- **Express Yourself:** Each post offers options to like, dislike, love, and chat. Users can react to posts and connect with others through our built-in messaging system.
+
+##### ⏺  Automatic Chat Groups:
+- **Post-Related Chat Groups:** When a user successfully posts, a chat group is automatically created. The author becomes the group admin.
+
+##### ⏺  Seamless Navigation:
+- **Navigate with Ease:** On the post page, a left-hand section allows users to effortlessly return to categories.
+
+##### ⏺  Intuitive Navbar:
+- **Navigate Anytime:** The top navigation bar includes buttons for the homepage, connections (chats), and logout.
+
+##### ⏺  Chat and Connection Management:
+- **Connect and Communicate:** On the chat page, users can manage connections, add new ones, or remove existing ones. The messaging system enables individualized communication with connections.
+  
+-  **Join Post-Related Groups:** Viewers of a post can request to join the chat group. They can send a direct message to the author, asking for an invitation to the group.
+
+- **One-on-One Communication:** Users can directly message anyone within the platform. This allows for private and direct communication between users.
+
+<br> <hr>
 ## Backend Setup
 
 ### Libraries Used
