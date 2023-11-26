@@ -308,14 +308,14 @@ vite build
 
 # ☑️ CI/CD <a name = "ci/cd"></a>
 
-## ▪️Build <a name = "ci_cd_build"></a>
+#### ▪️Build <a name = "ci_cd_build"></a>
 Continuous Integration and Delivery
 This application uses GitLab CI/CD for automating builds, tests, and deployments.
 
-## ▪️Pipeline Stages <a name = "pipeline_stages"></a>
+#### ▪️Pipeline Stages <a name = "pipeline_stages"></a>
 The `.gitlab-ci.yml` file defines the following stages:
 
-#### Build Stage <a name = "build_stages"></a>
+#### ▪️Build Stage <a name = "build_stages"></a>
 This stage has two parallel jobs:
 
 - **backend-build-job:** Builds the Spring Boot backend application using Maven.
@@ -329,32 +329,32 @@ This stage has two parallel jobs:
   - Runs `yarn build` to create a production build.
   - Saves the frontend build artifacts.
 
-#### Test Stage <a name = "test_stages"></a>
+#### ▪️Test Stage <a name = "test_stages"></a>
 - **backend-test-job:** Runs JUnit tests for backend code.
   - Uses Maven Docker image.
   - Runs `mvn verify` to execute unit tests.
   - Frontend tests are commented out for now.
 
-#### Publish Stage <a name = "publish_stages"></a>
+#### ▪️Publish Stage <a name = "publish_stages"></a>
 Builds Docker images for the backend and frontend.
 - Tags images with Git commit SHA for traceability.
 - Pushes images to Docker Hub repository.
 ![Image](./readme/dockerHub.png "Docker hub")
 
 
-#### Deploy Stage <a name = "deploy_stages"></a>
+#### ▪️Deploy Stage <a name = "deploy_stages"></a>
 Deploys the application to the production server (IP `172.17.1.123`).
 - Connects to the server via SSH using a private key.
 - Pulls the latest images from Docker Hub.
 - Stops any existing containers.
 - Starts new containers with the latest images.
 
-### Docker Containers <a name = "docker_container"></a>
+#### ▪️Docker Containers <a name = "docker_container"></a>
 - `my-app-backend` for the backend, exposes port `8073`.
 - `my-app-ui` for the frontend, exposes port `8074`.
   - Port `8074` on the server maps to port `5173` inside the frontend container.
 
-### Deployment Access <a name = "deployment_access"></a>
+#### ▪️Deployment Access <a name = "deployment_access"></a>
 - Backend: [http://172.17.1.123:8073](http://172.17.1.123:8073) (for internal consumption)
 - Frontend: [http://172.17.1.123:8074](http://172.17.1.123:8074) (Publicaly exposed)
 
