@@ -493,7 +493,7 @@ For some of our APIs we have followed Test driven developement approach.
 
 ## Developers
 
-- Nizamul Kazi (B00) - @dal.ca
+- Nizamul Kazi (B00961418) - nz707888@dal.ca
 - Rachit Khanna (B00948604) - rc257785@dal.ca
 - Nisarg Chudasama (B00971370) - ns458128@dal.ca
 - Freya Jayant Vora (B00) - @dal.ca
