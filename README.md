@@ -370,31 +370,34 @@ We have followed best practices for mocking the dependent classes. System under 
 ## ▪️TDD adherence <a name = "tdd_adherance"></a> 
 For some of our APIs we have followed Test driven developement approach.
 
+<br><hr>
+
 # ☑️ Quality <a name = "quality"></a>
 
 ## ▪️Design principles <a name = "design_principles"></a>
 
 
-<h4> Single Responsibility Principle </h4>
+- <h4> Single Responsibility Principle </h4>
 
-<p> The Single Responsibility Principle dictates that a class should have a singular responsibility, promoting the separation of concerns and facilitating the modification, testing, and reuse of code. This principle is being adhered to in several instances where we are creating distinct controllers and services for various stakeholders. </p>
+  <p> The Single Responsibility Principle dictates that a class should have a singular responsibility, promoting the separation of concerns and facilitating the modification, testing, and reuse of code. This principle is being adhered to in several instances where we are creating distinct controllers and services for various stakeholders. </p>
 
-<h4>Open/Closed Principle (OCP) </h4>
+- <h4>Open/Closed Principle (OCP) </h4>
 
-<p>"A class should be open for extension but closed for modification" means that a class's behavior can be extended without modifying its source code. We have implemented this principle in our application by creating separate classes for different types of users. </p>
+  <p>"A class should be open for extension but closed for modification" means that a class's behavior can be extended without modifying its source code. We have implemented this principle in our application by creating separate classes for different types of users. </p>
 
-<h4>Liskov Substitution Principle (LSP)</h4>
+- <h4>Liskov Substitution Principle (LSP)</h4>
 
-<p>Subtypes should be able to replace their base types without changing the correctness of the program. As a result, we ensure that if any class implements an abstract class or interface, it can fully replace its parent class.</p>
+  <p>Subtypes should be able to replace their base types without changing the correctness of the program. As a result, we ensure that if any class implements an abstract class or interface, it can fully replace its parent class.</p>
 
-<h4>Interface Segregation Principle (ISP)</h4>
+- <h4>Interface Segregation Principle (ISP)</h4>
 
-<p>The Interface Segregation Principle advocates for the use of smaller, more specialized interfaces instead of larger, more complex ones. This approach enables easier maintenance, testing, and code reuse. To implement this principle, we have designed separate interfaces for specific tasks. For example, we have a dedicated mail service interface responsible solely for sending mails, without including unnecessary methods that users would have to implement during implementation. By segregating interfaces in this way, we ensure that our application remains organized and manageable.</p>
+  <p>The Interface Segregation Principle advocates for the use of smaller, more specialized interfaces instead of larger, more complex ones. This approach enables easier maintenance, testing, and code reuse. To implement this principle, we have designed separate interfaces for specific tasks. For example, we have a dedicated mail service interface responsible solely for sending mails, without including unnecessary methods that users would have to implement during implementation. By segregating interfaces in this way, we ensure that our application remains organized and manageable.</p>
 
-<h4>Dependency Inversion Principle (DIP)</h4>
+- <h4>Dependency Inversion Principle (DIP)</h4>
 
-<p>To promote modularity and extensibility, the principle suggests that modules should rely on abstractions such as interfaces and abstract classes. To reduce dependencies on individual classes and decouple the components, we employ numerous interfaces and classes. As we're using Spring Boot for our application, we don't need to be too concerned about this principle because the framework is based on SOLID principle.</p>
+  <p>To promote modularity and extensibility, the principle suggests that modules should rely on abstractions such as interfaces and abstract classes. To reduce dependencies on individual classes and decouple the components, we employ numerous interfaces and classes. As we're using Spring Boot for our application, we don't need to be too concerned about this principle because the framework is based on SOLID principle.</p>
 
+<br> <hr>
 
 ## ▪️Architecture smells <a name = "architecture_smell"></a>
 
