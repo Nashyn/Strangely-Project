@@ -1,5 +1,5 @@
-import { EMPTY_STRING } from '../../../../resources/shared/global.constant';
-import Utilities from '../../../../utilities/utilities';
+import { EMPTY_OBJECT, EMPTY_STRING } from '../../../../resources/shared/global.constant';
+import Utility from '../../../../utils/Utility';
 
 class LoginSignupUtils {
   static getSignUpPayload = ({
@@ -11,7 +11,7 @@ class LoginSignupUtils {
     const {
       firstName = EMPTY_STRING,
       lastName = EMPTY_STRING,
-    } = Utilities.getSplitString(name, 'firstName', 'lastName');
+    } = Utility.getSplitString(name, 'firstName', 'lastName');
     return {
       username: name,
       password,
@@ -24,8 +24,25 @@ class LoginSignupUtils {
     };
   };
 
-  static setToken = (token) => {
-    localStorage.setItem('token', token);
+  // static setToken = (token) => {
+  //   localStorage.setItem('token', token);
+  // };
+
+  static sanitizeGoogleUserData = ({
+    userData = EMPTY_OBJECT,
+  }) => {
+    const {
+      id: userID = EMPTY_STRING,
+      name: userName = EMPTY_STRING,
+    } = userData || EMPTY_OBJECT;
+    return {
+      ...userData,
+      userID,
+      userName,
+      phone_number: EMPTY_STRING,
+      joiningDate: EMPTY_STRING,
+      areaId: EMPTY_STRING,
+    };
   };
 }
 

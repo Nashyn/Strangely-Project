@@ -1,3 +1,4 @@
+import { EMPTY_OBJECT } from '../../../../resources/shared/global.constant';
 import { ACTION_TYPES } from '../constants/LoginSignup.constant';
 
 export const signIn = payload => ({
@@ -28,4 +29,14 @@ export const updateUserData = payload => ({
 export const setLoading = payload => ({
   type: ACTION_TYPES.SET_LOADING,
   payload,
+});
+
+export const updateAreaId = payload => ({
+  type: ACTION_TYPES.UPDATE_AREA_ID,
+  payload,
+});
+
+export const resetAllData = () => ({
+  type: ACTION_TYPES.RESET_ALL_DATA,
+  payload: EMPTY_OBJECT,
 });

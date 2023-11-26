@@ -1,5 +1,9 @@
 .navbar {
-  background-color: transparent;
+  background-color: #f6f5f7;
+  position: fixed;
+  top: 0;
+  width: 97vw;
+  z-index: 2;
 
   .navList {
     list-style: none;
@@ -11,11 +15,50 @@
 
     .navItem {
       margin: 0 1.5rem;
+
       img {
         height: 2rem;
       }
+
+      .userBtn {
+        display: flex;
+        gap: 0.5rem;
+
+        >span {
+          &:hover {
+            color: #FF4B2B;
+          }
+        }
+      }
+
+      .chatBtn {
+        font-size: 2rem;
+      }
+
+      .homeBtn {
+        font-size: 2rem;
+      }
+
+      .homeText {
+        text-decoration: none;
+        color: #000 !important;
+        font-weight: bold;
+      }
+
+      :global([class*='active']) {
+        color: red;
+
+        svg {
+          fill: red;
+        }
+
+        &:before {
+          background-color: red;
+          transform: scaleX(1);
+        }
+      }
     }
-    
+
     .navLink {
       color: #000;
       text-decoration: none;
@@ -38,11 +81,26 @@
 
       &:hover {
         color: #ff5733;
-        // transform: translateY(-5px) scale(1.2); /* Add a bounce and scale effect */
-        // &::before {
-        //   transform: scaleX(1); /* Expand the underline on hover */
-        // }
       }
+    }
+
+    .rightSideNavItem {
+      display: flex;
+      align-items: center;
+
+      :global([class*='anticon anticon-user']) {
+        height: 2rem;
+        width: 2rem;
+        background-color: #e1dfdf;
+        text-align: center;
+        border: 1px solid #000;
+        border-radius: 50%;
+        padding: 2px;
+      }
+    }
+
+    .midPanel {
+      display: flex;
     }
   }
 }

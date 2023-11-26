@@ -10,6 +10,7 @@ import {
 } from '../../../../../resources/shared/global.constant';
 import { forgetPass, sendUserNameResetLink } from '../../service/LoginSignup.service';
 import styles from './forgetPassword.module.scss';
+import { TOASTER_MSG } from '../../constants/LoginSignup.constant';
 
 function ForgotPassword({
   isLoading,
@@ -44,11 +45,11 @@ function ForgotPassword({
     };
     forgetPass(payload)
       .then(() => {
-        message.success('Password reset email sent successfully');
+        message.success(TOASTER_MSG.PASS_RESET_EMAIL_SENT);
       })
       .catch(() => {
         message.error({
-          content: 'Password reset failed. Please try again.',
+          content: TOASTER_MSG.PASS_RESET_FAILED,
           duration: 2,
         });
       })
@@ -63,11 +64,11 @@ function ForgotPassword({
     };
     sendUserNameResetLink(payload)
       .then(() => {
-        message.success('If the user exists, we will send you the reset link');
+        message.success(TOASTER_MSG.IF_USER_EXISTS_WILL_SENT_LINK);
       })
       .catch(() => {
         message.error({
-          content: 'Please enter a valid username.',
+          content: TOASTER_MSG.ENTER_VALID_USERNAME,
           duration: 2,
         });
       })

@@ -12,7 +12,8 @@ const initialState = {
   password: '',
   phoneNumber: '',
   checkinType: '',
-  userData: {},
+  userData: '',
+  area_id: '',
 };
 
 const loginSignupReducer = (state = initialState, { type, payload }) => {
@@ -57,6 +58,16 @@ const loginSignupReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         userData: payload,
+      };
+    case ACTION_TYPES.UPDATE_AREA_ID:
+      return {
+        ...state,
+        area_id: payload,
+      };
+    case ACTION_TYPES.RESET_ALL_DATA:
+      return {
+        ...state,
+        ...initialState,
       };
     default:
       return state;

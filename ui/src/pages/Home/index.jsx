@@ -1,124 +1,229 @@
-import React from 'react';
+import React, { useEffect, useState, memo } from 'react';
+/* external imports */
 import { Layout, message } from 'antd';
-
 import {
-  Button, Card, Avatar, Typography, Grid,
+  Button,
+  Card,
+  Typography,
+  Grid,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  TextField,
 } from '@mui/material';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { v4 as randomUUID } from 'uuid';
+/* hoc */
 import withNavbar from '../../resources/shared/hoc/navbar';
+import withSidebar from '../../resources/shared/hoc/sidebar';
+/* internal component */
 import GeoFetch from '../../components/molecules/geoFetch';
+/* constant */
+import {
+  // ACTIVITIES,
+  TOASTER_MSG,
+} from './constants/Home.constant';
+import {
+  EMPTY_ARRAY,
+  EMPTY_FUNCTION,
+  EMPTY_STRING,
+} from '../../resources/shared/global.constant';
+/* styles */
+import styles from './Home.module.scss';
+/* service */
+import {
+  getAreaId,
+  postNewCategory,
+  getAllCategory,
+} from './service/Home.service';
+/* actions */
+import { updateAreaId } from '../../components/organisms/LoginSignup/data/LoginSingup.actions';
 
-// const { Meta } = Card;
-const { Sider, Content } = Layout;
+const { Content } = Layout;
 
-const activities = [
-  {
-    title: 'Cooking',
-    description: 'Join us for a delicious cooking session!',
-    imageSrc: 'https://source.unsplash.com/800x600/?cooking',
-  },
-  {
-    title: 'Travel',
-    description: 'Explore the world with our travel community.',
-    imageSrc: 'https://source.unsplash.com/800x600/?travel',
-  },
-  {
-    title: 'Sports',
-    description: 'Join us for an exciting sports event!',
-    imageSrc: 'https://source.unsplash.com/800x600/?sports',
-  },
-  {
-    title: 'Outdoor Activities',
-    description: 'Experience nature with our outdoor activities group.',
-    imageSrc: 'https://source.unsplash.com/800x600/?outdoor',
-  },
-];
+function Home({ onUpdateAreaId = EMPTY_FUNCTION }) {
+  const [open, setOpen] = React.useState(false);
+  const [categoryName, setCategoryName] = useState('');
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    fetchAllCategory();
+  }, []);
 
-const users = [
-  { name: 'John Doe' },
-  { name: 'Jane Smith' },
-  { name: 'Michael Johnson' },
-  { name: 'Emily Williams' },
-  { name: 'Daniel Brown' },
-  { name: 'Ava Jones' },
-  { name: 'William Davis' },
-  { name: 'Olivia Miller' },
-  { name: 'Matthew Wilson' },
-  { name: 'Sophia Taylor' },
-  { name: 'Liam Anderson' },
-];
-
-function Home() {
-  const handleLocationUpdate = (location) => {
-    message.info(`${location.latitude}, ${location.longitude}`);
-    // todo: needs to send to backend
+  const fetchAllCategory = () => {
+    getAllCategory()
+      .then((response) => {
+        const modifiedData = (response?.data || []).map(category => ({
+          categoryId: category?.postCategoryId,
+          title: category?.postCategoryName,
+          description: `Join us for a session of ${category.postCategoryName}!`,
+          imageSrc: `https://source.unsplash.com/800x600/?${category.postCategoryName.toLowerCase()}`,
+        }));
+        setCategories(modifiedData);
+      })
+      .catch();
   };
-  // const [selectedCategory, setSelectedCategory] = useState(null);
 
-  // const handleCategoryClick = (category) => {
-  //   setSelectedCategory(category);
-  // };
+  const handleLocationUpdate = (location) => {
+    const payload = {
+      latitude: location.latitude,
+      longitude: location.longitude,
+    };
+    getAreaId(payload)
+      .then((response) => {
+        onUpdateAreaId(response?.data?.area_id);
+      })
+      .catch(() => {
+        message.error(TOASTER_MSG.FAILED_TO_GET_AREA_ID);
+      });
+  };
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleInputChange = (event) => {
+    setCategoryName(event.target.value);
+  };
+
+  const handleAddCategory = (category) => {
+    const payload = {
+      postCategoryName: category,
+    };
+
+    postNewCategory(payload)
+      .then(() => {
+        message.success(
+          `${TOASTER_MSG.CREATE_NEW_CATEGORY_SUCCESS}${category}`,
+        );
+        message.success(TOASTER_MSG.CREATE_NEW_CATEGORY_SUCCESS);
+        setOpen(false);
+        fetchAllCategory();
+      })
+      .catch(() => {
+        message.error(TOASTER_MSG.POST_NEW_CATEGORY_FAILED);
+      });
+  };
 
   return (
     <>
-      <GeoFetch
-        onLocationUpdate={handleLocationUpdate}
-      />
-      {/* <Layout> */}
-      <Sider width={200} style={{ backgroundColor: '#f0f2f5' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', padding: '16px' }}>
-          <Button variant="contained" color="primary" style={{ marginBottom: '16px' }}>
-            Events
-          </Button>
-          <Button variant="contained" color="primary" style={{ marginBottom: '16px' }}>
-            Friends
-          </Button>
-          <Button variant="contained" color="primary" style={{ marginBottom: '16px' }}>
-            Explore
-          </Button>
-          <Button variant="contained" color="primary" style={{ marginBottom: '16px' }}>
-            Connect
-          </Button>
-          <Button variant="contained" color="primary" style={{ marginBottom: '16px' }}>
-            User Profile
-          </Button>
-        </div>
-      </Sider>
-      <Content style={{ padding: '0 24px', minHeight: 280 }}>
-        <Grid container justifyContent="center" spacing={2}>
-          {activities.map(activity => (
-            <Grid key={crypto.randomUUID()} item xs={12} sm={6} md={4} lg={3}>
-              <Link to={`/posts/${activity.title.toLowerCase()}`}>
-                <Card sx={{ maxWidth: 345 }}>
-                  <img alt={activity.title} src={activity.imageSrc} style={{ width: '100%' }} />
-                  <Typography gutterBottom variant="h5" component="div" style={{ padding: '16px' }}>
-                    {activity.title}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary" style={{ padding: '0 16px 16px' }}>
-                    {activity.description}
-                  </Typography>
-                </Card>
-              </Link>
-            </Grid>
-          ))}
-        </Grid>
-      </Content>
-      <Sider width={200} style={{ backgroundColor: '#f0f2f5' }}>
-        <div style={{ padding: '16px' }}>
-          {users.map(user => (
-            <div key={crypto.randomUUID()} style={{ display: 'flex', alignItems: 'center', marginBottom: '16px' }}>
-              <Avatar>{user.name.charAt(0)}</Avatar>
-              <Typography variant="body1" style={{ marginLeft: '8px' }}>
-                {user.name}
-              </Typography>
-            </div>
-          ))}
-        </div>
-      </Sider>
-      {/* </Layout> */}
+      <GeoFetch onLocationUpdate={handleLocationUpdate} />
+      <div className={styles.homeContainer}>
+        <Content style={{ padding: '0 24px', minHeight: 280 }}>
+          <Typography
+            variant="h4"
+            component="h2"
+            style={{ padding: '16px', textAlign: 'center' }}
+          >
+            <span className={styles.welcomeText}> Welcome to </span>
+            <span className={styles.strangelyText}> Strangely! </span>
+          </Typography>
+          <Typography
+            variant="h6"
+            style={{ padding: '0 16px 16px', textAlign: 'center' }}
+          >
+            <span className={styles.subText}>
+              Please select a category from below to explore more events 🎊
+              happening near you 📍.
+            </span>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleClickOpen}
+            >
+              Add New Category
+            </Button>
+            <Dialog open={open} onClose={handleClose}>
+              <DialogTitle>Add New Category</DialogTitle>
+              <DialogContent>
+                <DialogContentText sx={{ fontSize: '1.5rem' }}>
+                  Please enter the name of the new category.
+                </DialogContentText>
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  id="name"
+                  label="Category Name"
+                  type="text"
+                  fullWidth
+                  value={categoryName}
+                  onChange={handleInputChange}
+                />
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleClose} style={{ fontSize: '1rem' }}>
+                  Cancel
+                </Button>
+                <Button
+                  style={{ fontSize: '1rem' }}
+                  onClick={() => handleAddCategory(categoryName)}
+                >
+                  Add
+                </Button>
+              </DialogActions>
+            </Dialog>
+          </Typography>
+          <Grid container justifyContent="center" spacing={2}>
+            {(categories || EMPTY_ARRAY).map(activity => (
+              <Grid key={randomUUID()} item xs={12} sm={6} md={4} lg={3}>
+                <Link
+                  to={`/feed/${
+                    activity?.title?.toLowerCase() || EMPTY_STRING
+                  }/${activity?.categoryId || EMPTY_STRING}`}
+                  className={styles.cardItem}
+                >
+                  <Card sx={{ maxWidth: 345 }}>
+                    <img
+                      alt={activity?.title || EMPTY_STRING}
+                      src={activity?.imageSrc || EMPTY_STRING}
+                      style={{ width: '28rem', height: '18.7rem' }}
+                    />
+                    <Typography
+                      gutterBottom
+                      variant="h5"
+                      component="div"
+                      style={{ padding: '16px' }}
+                    >
+                      {activity?.title || EMPTY_STRING}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      style={{ padding: '0 16px 16px' }}
+                    >
+                      {activity?.description || EMPTY_STRING}
+                    </Typography>
+                  </Card>
+                </Link>
+              </Grid>
+            ))}
+          </Grid>
+        </Content>
+      </div>
     </>
-
   );
 }
 
-export default withNavbar(Home);
+Home.propTypes = {
+  onUpdateAreaId: PropTypes.func,
+};
+
+Home.defaultProps = {
+  onUpdateAreaId: EMPTY_FUNCTION,
+};
+
+const mapDispatchToProps = dispatch => ({
+  onUpdateAreaId: payload => dispatch(updateAreaId(payload)),
+});
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(withSidebar(withNavbar(memo(Home))));

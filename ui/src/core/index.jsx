@@ -4,8 +4,9 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import { PersistGate } from 'redux-persist/integration/react';
 /* store */
-import store from './reducers/store';
+import { store, persistor } from './reducers/store';
 /* internal components */
 import ErrorBoundary from './configs/ErrorBoundary';
 import Routes from './routes/route';
@@ -15,9 +16,9 @@ const root = ReactDOM.createRoot(rootElement);
 
 // eslint-disable-next-line no-console
 root.render(
-  <React.StrictMode>
-    <ErrorBoundary>
-      <Provider store={store}>
+  <ErrorBoundary>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter>
           <GoogleOAuthProvider
             clientId={import.meta.env.VITE_CLIENT_ID}
@@ -25,7 +26,7 @@ root.render(
             <Routes />
           </GoogleOAuthProvider>
         </BrowserRouter>
-      </Provider>
-    </ErrorBoundary>
-  </React.StrictMode>,
+      </PersistGate>
+    </Provider>
+  </ErrorBoundary>,
 );

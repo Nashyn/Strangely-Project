@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable guard-for-in */
 /* external imports */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
@@ -10,7 +10,7 @@ import { Button, message } from 'antd';
 /* utils */
 import _get from 'lodash/get';
 import LoginSignupUtils from '../../utils/LoginSignup.utils';
-import Utilites from '../../../../../utilities/utilities';
+import Utility from '../../../../../utils/Utility';
 /* constants */
 import {
   EMPTY_OBJECT,
@@ -19,7 +19,7 @@ import {
   EMPTY_FUNCTION,
   EMPTY_ARRAY,
 } from '../../../../../resources/shared/global.constant';
-import { STRING_CONSTANTS } from '../../constants/LoginSignup.constant';
+import { TOASTER_MSG } from '../../constants/LoginSignup.constant';
 /* internal components */
 import GoogleAuth from '../googleAuth';
 /* actions */
@@ -38,6 +38,7 @@ function SignUp({
   isLoading = false,
   name = EMPTY_STRING,
   email = EMPTY_STRING,
+  userData = EMPTY_OBJECT,
   password = EMPTY_STRING,
   phoneNumber = EMPTY_STRING,
   onUpdateFields = EMPTY_FUNCTION,
@@ -45,6 +46,13 @@ function SignUp({
   onUpdateUserData = EMPTY_FUNCTION,
 }) {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (Utility.isObjectDefined(userData)) {
+      navigate('/home');
+    }
+  }, [navigate]);
+
   const handleChange = (evt) => {
     const {
       type,
@@ -72,17 +80,15 @@ function SignUp({
     onSetLoading(true);
     try {
       const response = await userRegistration(payload);
-      if (Utilites.isObjectDefined(response)) {
+      if (Utility.isObjectDefined(response)) {
         const { data = EMPTY_ARRAY } = response || EMPTY_OBJECT;
         onUpdateUserData(data);
-        localStorage.setItem('userData', data);
-        message.success(data?.message || STRING_CONSTANTS.REGISTER_SUCCESS);
-        LoginSignupUtils.setToken(data?.token);
+        message.success(data?.message || TOASTER_MSG.REGISTER_SUCCESS);
         navigate('/home');
       }
     } catch (err) {
       message.error({
-        content: err.response.data.message || STRING_CONSTANTS.REGISTER_FAILED,
+        content: err.response.data.message || TOASTER_MSG.REGISTER_FAILED,
         duration: 2,
       });
     } finally {
@@ -149,6 +155,7 @@ SignUp.propTypes = {
   isLoading: PropTypes.bool,
   name: PropTypes.string,
   email: PropTypes.string,
+  userData: PropTypes.object,
   password: PropTypes.string,
   phoneNumber: PropTypes.string,
   onUpdateFields: PropTypes.func,
@@ -160,6 +167,7 @@ SignUp.defaultProps = {
   isLoading: false,
   name: EMPTY_STRING,
   email: EMPTY_STRING,
+  userData: EMPTY_OBJECT,
   password: EMPTY_STRING,
   phoneNumber: EMPTY_STRING,
   onUpdateFields: EMPTY_FUNCTION,
@@ -168,10 +176,11 @@ SignUp.defaultProps = {
 };
 
 const mapStateToProps = ({ loginSignupReducer }) => ({
-  isLoading: _get(loginSignupReducer, 'isLoading'),
   name: _get(loginSignupReducer, 'name'),
   email: _get(loginSignupReducer, 'email'),
+  userData: _get(loginSignupReducer, 'userData'),
   password: _get(loginSignupReducer, 'password'),
+  isLoading: _get(loginSignupReducer, 'isLoading'),
   phoneNumber: _get(loginSignupReducer, 'phoneNumber'),
 });
 

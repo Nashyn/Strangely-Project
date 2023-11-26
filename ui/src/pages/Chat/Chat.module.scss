@@ -1,0 +1,21 @@
+$maxChatHeight: 95vh;
+.chatContainer {
+  padding-top: 6rem;
+  height: $maxChatHeight;
+  :global([class*='ce-wrapper']) {
+    height: $maxChatHeight;
+  }
+  :global([class*='ce-photo-section']) {
+    display: none;
+  }
+  form {
+    display: unset;
+    align-items: unset;
+    justify-content: unset;
+    flex-direction: unset;
+    padding: unset;
+    :global([id*='files']) {
+      display: none;
+    }
+  }
+}

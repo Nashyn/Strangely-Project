@@ -10,7 +10,7 @@ import cx from 'classnames';
 import { Button, message } from 'antd';
 /* utils */
 import _get from 'lodash/get';
-import Utilites from '../../../../../utilities/utilities';
+import Utility from '../../../../../utils/Utility';
 /* actions */
 import {
   setLoading,
@@ -27,7 +27,7 @@ import {
   EMPTY_FUNCTION,
   EMPTY_ARRAY,
 } from '../../../../../resources/shared/global.constant';
-import { STRING_CONSTANTS } from '../../constants/LoginSignup.constant';
+import { TOASTER_MSG } from '../../constants/LoginSignup.constant';
 /* services */
 import { userLogin } from '../../service/LoginSignup.service';
 /* styles */
@@ -37,11 +37,20 @@ function SignIn({
   isLoading = false,
   username = EMPTY_STRING,
   password = EMPTY_STRING,
+  // userData = EMPTY_OBJECT,
   onUpdateFields = EMPTY_FUNCTION,
   onSetLoading = EMPTY_FUNCTION,
   onUpdateUserData = EMPTY_FUNCTION,
 }) {
   const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   if (Utility.isObjectDefined(userData)
+  //   && ) {
+  //     navigate('/home');
+  //   }
+  // }, [navigate]);
+
   const handleChange = (evt) => {
     const {
       type,
@@ -68,15 +77,14 @@ function SignIn({
 
     try {
       const response = await userLogin(payload);
-      if (Utilites.isObjectDefined(response)) {
+      if (Utility.isObjectDefined(response)) {
         const { data = EMPTY_ARRAY } = response || EMPTY_OBJECT;
         onUpdateUserData(data);
-        localStorage.setItem('userData', data);
         navigate('/home');
       }
     } catch (err) {
       message.error({
-        content: err?.response?.data?.message || STRING_CONSTANTS.LOGIN_FAILURE,
+        content: err?.response?.data?.message || TOASTER_MSG.LOGIN_FAILURE,
         duration: 2,
       });
     } finally {
@@ -136,6 +144,7 @@ SignIn.propTypes = {
   isLoading: PropTypes.bool,
   username: PropTypes.string,
   password: PropTypes.string,
+  // userData: PropTypes.object,
   onUpdateFields: PropTypes.func,
   onSetLoading: PropTypes.func,
   onUpdateUserData: PropTypes.func,
@@ -145,12 +154,14 @@ SignIn.defaultProps = {
   isLoading: false,
   username: EMPTY_STRING,
   password: EMPTY_STRING,
+  // userData: EMPTY_OBJECT,
   onUpdateFields: EMPTY_FUNCTION,
   onSetLoading: EMPTY_FUNCTION,
   onUpdateUserData: EMPTY_FUNCTION,
 };
 
 const mapStateToProps = ({ loginSignupReducer }) => ({
+  userData: _get(loginSignupReducer, 'userData'),
   isLoading: _get(loginSignupReducer, 'isLoading'),
   username: _get(loginSignupReducer, 'name'),
   password: _get(loginSignupReducer, 'password'),

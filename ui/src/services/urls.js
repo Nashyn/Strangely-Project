@@ -6,4 +6,34 @@ export const loginSignupService = {
   forgetPass: `${baseURL}/resetpasswordSS`,
   sendUserNameResetLink: `${baseURL}/resetSS`,
   logoutUser: `${baseURL}/logoutSS`,
+  updateProfile: `${baseURL}/strangely/update/`,
+};
+
+export const postService = {
+  getAllPostsByCategoryAndArea: `${baseURL}/post/get_post_by_filter`,
+  createPost: `${baseURL}/post/addpost`,
+  deletePost: `${baseURL}/post/delete-post/id`,
+  editPost: `${baseURL}/post/edit-post/id`,
+  // reaction
+  likePost: `${baseURL}/post/add-like/id`,
+  removeLikePost: `${baseURL}/post/remove-like/id`,
+  disLikePost: `${baseURL}/post/add-dislike/id`,
+  removeDisLikePost: `${baseURL}/post/remove-dislike/id`,
+  lovePost: `${baseURL}/post/add-love/id`,
+  removeLovePost: `${baseURL}/post/remove-love/id`,
+};
+
+export const homeService = {
+  getAreadId: `${baseURL}/getIdByLatLong`,
+  postNewCategory: `${baseURL}/post-categories/add`,
+  getAllCategory: `${baseURL}/post-categories/getAllCategories`,
+};
+
+export const chatService = {
+  getMeAsUser: 'https://api.chatengine.io/users/me/',
+  createMeAsUser: 'https://api.chatengine.io/users/',
+};
+
+export const homePageService = {
+  userDataFromGoogleApi: 'https://www.googleapis.com/oauth2/v1/userinfo',
 };

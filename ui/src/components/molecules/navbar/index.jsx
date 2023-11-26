@@ -1,77 +1,134 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* external imports */
 import React from 'react';
-import { connect } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom';
-import PropTypes from 'prop-types';
-/* utils */
-import _get from 'lodash/get';
-/* resource */
+import {
+  useSelector,
+  useDispatch,
+} from 'react-redux';
+import {
+  NavLink,
+  useLocation,
+  useNavigate,
+} from 'react-router-dom';
+import {
+  // UserOutlined,
+  // WechatOutlined,
+  HomeOutlined,
+  TeamOutlined,
+} from '@ant-design/icons';
+import {
+  message,
+  // Drawer,
+} from 'antd';
+import cx from 'classnames';
+/* resources */
 import logoutIcon from '../../../resources/assets/logout.svg';
 /* styles */
 import styles from './Navbar.module.scss';
-import Utilites from '../../../utilities/utilities';
 /* constants */
-import { EMPTY_OBJECT } from '../../../resources/shared/global.constant';
+import { TOASTER_MSG } from '../../organisms/LoginSignup/constants/LoginSignup.constant';
 /* service */
 import { logoutUser } from '../../organisms/LoginSignup/service/LoginSignup.service';
+/* actions */
+import { resetAllData } from '../../organisms/LoginSignup/data/LoginSingup.actions';
+// /* internal component */
+// import UserSetting from '../../../pages/UserSetting';
 
-function Navbar({
-  userData = EMPTY_OBJECT,
-}) {
-  const userDatas = localStorage.getItem('userData');
+function Navbar() {
+  const userData = useSelector(state => state.loginSignupReducer.userData);
+  const dispatch = useDispatch();
   const location = useLocation();
+  const navigate = useNavigate();
+  // const [isDrawerVisible, setIsDrawerVisible] = useState(false);
+
   const handleLogout = () => {
-    logoutUser(userData)
-      .then()
-      .catch();
+    const { userName = '', token = '' } = userData;
+    logoutUser({ userName, token })
+      .then(() => {
+        dispatch(resetAllData());
+        message.success(TOASTER_MSG.LOGGED_OUT_SUCCESSFULLY);
+        navigate('/');
+      })
+      .catch((err) => {
+        message.error(err.message || TOASTER_MSG.LOGGED_OUT_FAILED);
+      });
   };
 
   return (
     <nav className={styles.navbar}>
       <ul className={styles.navList}>
+        {/* LEFT PANEL: home */}
         <li className={styles.navItem}>
-          <Link
+          <NavLink
+            title="Home"
             to="/home"
-            className={styles.navLink}
+            className={styles.homeText}
           >
             Home
-          </Link>
+          </NavLink>
         </li>
-        {
-          (Utilites.isObjectDefined(userDatas)
-          && location.pathname !== '/') && (
+        {/* MID PANEL: home */}
+        { userData && location.pathname !== '/' && (
+          <div
+            className={styles.midPanel}
+          >
+            {/* home */}
+            <li className={styles.navItem}>
+              <NavLink
+                title="Home"
+                to="/home"
+                activeClassName={styles.activeLink}
+                className={
+                  cx(
+                    styles.navLink,
+                    styles.homeBtn,
+                  )
+                }
+              >
+                <HomeOutlined />
+              </NavLink>
+            </li>
+            {/* connection */}
+            <li className={styles.navItem}>
+              <NavLink
+                title="Connections"
+                activeClassName={styles.activeLink}
+                to="/chat"
+                className={
+                  cx(
+                    styles.navLink,
+                    styles.chatBtn,
+                  )
+                }
+              >
+                <TeamOutlined />
+              </NavLink>
+            </li>
+          </div>
+        )}
+        {/* home */}
+        {/* RIGHT PANEL: logout */}
+        { userData && location.pathname !== '/' && (
+          <div className={styles.rightSideNavItem}>
+            {/* logout */}
             <li className={styles.navItem}>
               <div
+                role="button"
+                tabIndex="0"
                 className={styles.logoutButton}
                 onClick={handleLogout}
               >
                 <img
+                  title="logout"
                   src={logoutIcon}
                   alt="Logout"
                 />
               </div>
             </li>
-          )
-        }
+          </div>
+        )}
       </ul>
     </nav>
   );
 }
 
-Navbar.propTypes = {
-  userData: PropTypes.bool,
-};
-
-Navbar.defaultProps = {
-  userData: EMPTY_OBJECT,
-};
-
-const mapStateToProps = ({ loginSignupReducer }) => ({
-  userData: _get(loginSignupReducer, 'userData'),
-});
-
-export default connect(
-  mapStateToProps,
-  null,
-)(Navbar);
+export default Navbar;
