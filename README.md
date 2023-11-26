@@ -359,6 +359,7 @@ For some of our APIs we have followed Test driven developement approach.
 - The Excel sheet : [ArchitectureSmellsFinal.xlsx](./readme/ArchitectureSmellsFinal.xlsx)
 - Preview: 
 ![Image](./readme/ArchitectureSmells.png)
+- These are all false positive smells, Thier reason for being false positive is shown below. 
 
 
 ## ▪️Design smells <a name = "design_smell"></a>
@@ -367,6 +368,7 @@ For some of our APIs we have followed Test driven developement approach.
 - The Excel sheet : [DesignSmellsFinal.xlsx](./readme/DesignSmellsFinal.xlsx)
 - Preview:
 ![Image](./readme/DesignSmells.png)
+- These are all false positive smells, Thier reason for being false positive is shown below.
 
 
 ## ▪️Implementation smells <a name = "implementation_smell"></a>
@@ -375,6 +377,7 @@ For some of our APIs we have followed Test driven developement approach.
 - The Excel sheet : [ImplementationSmellsFinal.xlsx](./readme/ImplementationSmellsFinal.xlsx)
 - Preview:
 ![Image](./readme/ImplementationSmells.png)
+- These are all false positive smells, Thier reason for being false positive is shown below.
 
 ## ▪️Other clean code practices <a name = "other_clean"></a>
 1.  We've separated CSS and JavaScript for improved maintainability and readability.
