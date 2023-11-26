@@ -264,9 +264,6 @@ vite build
 </td>
 <td>generates bundle files in <u>build</u> directory</td>
 </tr>
-<tr>
-<td>preview build</td>
-<td>
 
 
 
