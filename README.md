@@ -460,7 +460,7 @@ For some of our APIs we have followed Test driven developement approach.
 ![Image](./readme/ImplementationSmells.png)
 - These are all false positive smells, Thier reason for being false positive is shown below.
 
-## ▪️Other clean code practices <a name = "other_clean"></a>
+## ▪️Other clean code practices (FrontEnd) <a name = "other_clean"></a>
 1.  We've separated CSS and JavaScript for improved maintainability and readability.
 2.  Our vite.config.js is organized to enhance readability and manage different aspects of the build process efficiently.
 3.  In LoginSignup.constant.js, we've defined action types and string constants, adhering to the DRY principle and ensuring consistency.
