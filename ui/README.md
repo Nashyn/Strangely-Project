@@ -264,6 +264,8 @@ vite build
 </td>
 <td>generates bundle files in <u>build</u> directory</td>
 </tr>
+</tbody>
+</table>
 
 
 
