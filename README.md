@@ -2,11 +2,10 @@
 
 Strangely is an innovative web platform that facilitates connections between strangers through events, promoting new friendships and social interactions. It provides an easy-to-use interface for users to engage in events and meet new people.
 
-. [**Documentation**](#documentation)
-    [1.1 Usage Scenario](#usage_scenario) 
-    ## Table of Contents
-
+## Table of Contents
+[**Documentation**](#documentation)
 - [Overview](#overview)
+- [1.1 Usage Scenario](#usage_scenario) 
 - [Backend Setup](#backend-setup)
     - [Libraries Used](#libraries-used)
     - [Application Properties Overview](#Security Configuration)
@@ -68,6 +67,12 @@ Strangely is an innovative web platform that facilitates connections between str
 ***
 # ☑️ Documentation <a name = "documentation"></a>
 
+## Overview
+
+Strangely is designed to create a comfortable and welcoming platform for people looking to expand their social circles and experience new events.
+
+***
+
 ## ▪️Usage Scenario <a name = "usage_scenario"></a>
 
 <p>1)	The users can register themselves on the signup page using their own email or can register with their google email.</p>
@@ -81,11 +86,7 @@ Strangely is an innovative web platform that facilitates connections between str
 <p>9)   On the postpage, on the left hand side their is categories section where user can go back to categories by clicking on that directly.</p>
 <p>10)  On the navbar, there is the homepage button to redirect back to homepage, connection button to redirect to chats and the logout button.</p>
 <p>11)  On the chat page, user can add their connections or delete them. They can chat with their connections individually via our messaging system.</p>
-## Overview
 
-Strangely is designed to create a comfortable and welcoming platform for people looking to expand their social circles and experience new events.
-
-***
 
 ## Backend Setup
 
