@@ -25,11 +25,22 @@ Strangely is an innovative web platform that facilitates connections between str
 
 2. [**CI/CD**](#ci/cd)
 
-    [2.1 Build](#build)
+    [2.1 Build](#ci_cd_build)
 
-    [2.2 Test](#test1)
-    
-    [2.3 Code Quality](#code_quality)
+    [2.2 Pipeline Stages](#pipeline_stages)
+
+    [2.3 Build Stage](#build_stages)
+
+    [2.4 Test Stage](#test_stages)
+
+    [2.5 Publish Stage](#publish_stages)
+
+    [2.6 Deploy Stage](#deploy_stages)
+
+    [2.7 Docker Container](#docker_container)
+
+    [2.8 Deployment Access](#deployment_access)
+
 
 3. [**Test**](#test)
 
@@ -294,36 +305,17 @@ vite build
     - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
     - [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
-<!-- # ☑️ CI/CD <a name = "ci/cd"></a>
-
-
-## ▪️Build <a name = "build"></a>
-
-In our project, we have also implemented a similar approach for the build stage of our CI Pipeline. We have two distinct jobs: the frontend build job and the backend build job. -->
-
-
-<!-- ## ▪️Test <a name = "test1"></a>
-
-we are using JUnit, a popular open-source testing framework for Java, to test our application. We have integrated JUnit tests into our CI pipeline by running the "mvn test" command, which invokes the Maven build tool to execute the tests. -->
-
-
-
-<!-- ## ▪️Code Quality <a name = "code_quality"></a>
-
-The Continuous Integration (CI) Pipeline of the application includes a stage for code quality assurance, which covers both the frontend and backend code. 
-- Job1: The frontend code quality is ensured by integrating prettier into the pipeline, which checks for proper formatting of the codebase. 
-- Job2: The backend code quality is evaluated by running designated code smell tools, which generate reports of potential issues in the code. These code smell reports are then saved in artifacts, which can be downloaded later to analyze the code in detail. -->
 
 # ☑️ CI/CD <a name = "ci/cd"></a>
 
-## ▪️Build <a name = "build"></a>
+## ▪️Build <a name = "ci_cd_build"></a>
 Continuous Integration and Delivery
 This application uses GitLab CI/CD for automating builds, tests, and deployments.
 
-## ▪️Pipeline Stages
+## ▪️Pipeline Stages <a name = "pipeline_stages"></a>
 The `.gitlab-ci.yml` file defines the following stages:
 
-#### Build Stage
+#### Build Stage <a name = "build_stages"></a>
 This stage has two parallel jobs:
 
 - **backend-build-job:** Builds the Spring Boot backend application using Maven.
@@ -337,32 +329,32 @@ This stage has two parallel jobs:
   - Runs `yarn build` to create a production build.
   - Saves the frontend build artifacts.
 
-#### Test Stage
+#### Test Stage <a name = "test_stages"></a>
 - **backend-test-job:** Runs JUnit tests for backend code.
   - Uses Maven Docker image.
   - Runs `mvn verify` to execute unit tests.
   - Frontend tests are commented out for now.
 
-#### Publish Stage
+#### Publish Stage <a name = "publish_stages"></a>
 Builds Docker images for the backend and frontend.
 - Tags images with Git commit SHA for traceability.
 - Pushes images to Docker Hub repository.
 ![Image](./readme/dockerHub.png "Docker hub")
 
 
-#### Deploy Stage
+#### Deploy Stage <a name = "deploy_stages"></a>
 Deploys the application to the production server (IP `172.17.1.123`).
 - Connects to the server via SSH using a private key.
 - Pulls the latest images from Docker Hub.
 - Stops any existing containers.
 - Starts new containers with the latest images.
 
-### Docker Containers
+### Docker Containers <a name = "docker_container"></a>
 - `my-app-backend` for the backend, exposes port `8073`.
 - `my-app-ui` for the frontend, exposes port `8074`.
   - Port `8074` on the server maps to port `5173` inside the frontend container.
 
-### Access
+### Deployment Access <a name = "deployment_access"></a>
 - Backend: [http://172.17.1.123:8073](http://172.17.1.123:8073) (for internal consumption)
 - Frontend: [http://172.17.1.123:8074](http://172.17.1.123:8074) (Publicaly exposed)
 
