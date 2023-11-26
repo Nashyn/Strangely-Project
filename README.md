@@ -2,6 +2,17 @@
 
 Strangely is an innovative web platform that facilitates connections between strangers through events, promoting new friendships and social interactions. It provides an easy-to-use interface for users to engage in events and meet new people.
 
+##
+[![pipeline](https://img.shields.io/badge/pipeline-passed-green
+)](https://img.shields.io/badge/pipeline-passed-green
+) 
+
+[![Coverage](https://img.shields.io/badge/coverage-76%25-blue
+)](https://img.shields.io/badge/coverage-90%25-blue
+)
+
+<br> <hr>
+
 ## Table of Contents
 [**Documentation**](#documentation)
 - [Overview](#overview)
