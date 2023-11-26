@@ -497,6 +497,6 @@ For some of our APIs we have followed Test driven developement approach.
 - Rachit Khanna (B00948604) - rc257785@dal.ca
 - Nisarg Chudasama (B00971370) - ns458128@dal.ca
 - Freya Jayant Vora (B00) - @dal.ca
-- Mohammad Faizan (B00) - @dal.ca
+- Mohammad Faizan (B00966320) - mh299149@dal.ca
 
 
