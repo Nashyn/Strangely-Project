@@ -268,7 +268,7 @@ vite build
 <td>preview build</td>
 <td>
 
-```
+
 
 ## Reference of technologies used
 
@@ -294,7 +294,6 @@ vite build
     - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
     - [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
-```
 # ☑️ CI/CD <a name = "ci/cd"></a>
 
 
