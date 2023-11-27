@@ -314,7 +314,63 @@ vite build
 </tbody>
 </table>
 
+# Strangely - Backend
 
+
+## Prerequisites
+
+- [Java 17](https://www.oracle.com/java/technologies/downloads/#jdk17-windows)
+- [Maven 3.9.5](https://maven.apache.org/download.cgi)
+- [Lombok 1.18.22](https://projectlombok.org/)
+- [SQL](https://dev.mysql.com/downloads/workbench/)
+
+```
+## Getting Started
+Follow these steps to set up and run the project locally.
+
+### 1. Clone the Repository
+```bash
+ git clone git@git.cs.dal.ca:courses/2023-fall/csci-5308/Group14.git 
+ OR
+ git clone https://git.cs.dal.ca/courses/2023-fall/csci-5308/Group14.git
+```
+### 2. Navigate to the project directory
+```bash
+cd Group14/Backend
+```
+## Commands
+
+<table>
+<tbody>
+<tr>
+<th>&nbsp;title</th>
+<th>command</th>
+<th>&nbsp;description</th>
+</tr>
+<tr>
+<td>build/td>
+<td>
+
+```
+mvn clean install -Dskiptests
+```
+
+</td>
+<td>Load Dependencies and build project</td>
+</tr>
+<tr>
+<td>Run on localhost</td>
+<td>
+
+```
+Run the 'main' function BackendApplication class present in BackendApplication.java
+```
+
+</td>
+<td>Will run the backend application on localhost:8080. To run any api just hit "http://localhost:8080/api_url" with required body</td>
+</tr>
+</tbody>
+</table>
 
 ## Reference of technologies used
 
@@ -578,6 +634,6 @@ For some of our APIs we have followed Test driven developement approach.
 - Rachit Khanna (B00948604) - rc257785@dal.ca
 - Nisarg Chudasama (B00971370) - ns458128@dal.ca
 - Freya Jayant Vora (B00961402) - freya.vora@dal.ca
-- Mohammad Faizan (B00966320) - mh299149@dal.ca
+- Mohd Faizan (B00966320) - mh299149@dal.ca
 
 
