@@ -322,19 +322,15 @@ check if exists
 node --version
 vite --version
 ```
-## Getting Started
-Follow these steps to set up and run the project locally.
 
-### 1. Clone the Repository
-```bash
- git clone git@git.cs.dal.ca:courses/2023-fall/csci-5308/Group14.git 
- OR
- git clone https://git.cs.dal.ca/courses/2023-fall/csci-5308/Group14.git
-```
-### 2. Navigate to the project directory
-```bash
-cd Group14/ui
-```
+NOTE: if you are trying to consume deployed backend url in frontend, then you need to connect to Dalhousie VPN and consume this deployed backend url 
+
+i.e `'http://172.17.1.123:8073'` in file : `ui/src/services/urls.js`
+
+else if you want to use locally ran backend service 
+
+then replace `export const baseURL = 'http://172.17.1.123:8073';` with 
+`export const baseURL = 'http://localhost:8080';`
 ## Commands
 
 <table>
