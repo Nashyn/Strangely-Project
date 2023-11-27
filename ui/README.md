@@ -66,21 +66,7 @@ Strangely is an innovative web platform that facilitates connections between str
 - [License](#license)
 
 ***
-# ☑️ Documentation <a name = "documentation"></a>
 
-## ▪️Usage Scenario <a name = "usage_scenario"></a>
-
-<p>1)	The users can register themselves on the signup page using their own email or can register with their google email.</p>
-<p>2)	Same users can login using those credentials or can login with google account after registering.</p>
-<p>3)	There is also the forgot password functionality provided in case user forgets their password, user can click on that option and get a reset password link after putting in his username.</p>
-<p>4)	After login the user will land on the homepage where they can see multiple categories already listed on the homepage. Users can also add a new category which they like and it will be added to the existing categories.</p>
-<p>5)	On the left hand panel of the homepage, there are 2 options for profile and connections. User can click on profile and change his User profile settings like username,email and phone number</p>
-<p>6)	By clicking on connections, User can see who they have connected and has a previous chat history with. </p>
-<p>7)	Now by clicking on individual caategories, user can see posts related to that category. He will land on the postpage where the user can see posts by different users or he can add his own post related to that category by simply putting a caption or uploading the image with it as well.</p>
-<p>8)   On each post their is a like,disliike,love and chat functionality where the first 3 emotes describe reaction to that post while the chat can be used to connect to that user who posted it.</p>
-<p>9)   On the postpage, on the left hand side their is categories section where user can go back to categories by clicking on that directly.</p>
-<p>10)  On the navbar, there is the homepage button to redirect back to homepage, connection button to redirect to chats and the logout button.</p>
-<p>11)  On the chat page, user can add their connections or delete them. They can chat with their connections individually via our messaging system.</p>
 ## Overview
 
 Strangely is designed to create a comfortable and welcoming platform for people looking to expand their social circles and experience new events.
@@ -204,6 +190,12 @@ yarn dev
 - [Apache Velocity](https://velocity.apache.org/engine/1.7/user-guide.html)
 - [Junit](https://junit.org/junit4/)
 - [Mockito](https://site.mockito.org)
+- [React](https://react.dev)
+- [Redux](https://redux.js.org)
+- [Ant design](https://ant.design)
+- [Axios](https://axios-http.com)
+- [Vite](https://vitejs.dev)
+- [React Router](https://reactrouter.com/en/main)
 ***
 
 # Strangely - UI
@@ -211,7 +203,7 @@ yarn dev
 
 ## Prerequisites
 
-- [NodeJS](https://nodejs.org/en) `v18.x`
+- [NodeJS](https://nodejs.org/en) `v20.x`
 > you can use [nvm](https://github.com/nvm-sh/nvm) to manage node versions
 
 check if exists
@@ -264,10 +256,52 @@ vite build
 </td>
 <td>generates bundle files in <u>build</u> directory</td>
 </tr>
+<tr>
+<td>preview build</td>
+<td>
+
+```
+vite preview
+```
+
+</td>
+<td>preview of generated bundle by <i>build</i> command</td>
+</tr>
+<tr>
+<td>lint</td>
+<td>
+
+```
+eslint --ext .js,.jsx .
+```
+
+</td>
+<td>automatically fix most lint errors</td>
+</tr>
+<tr>
+<td>test</td>
+<td>
+
+```
+vitest
+```
+
+</td>
+<td>run unit tests</td>
+</tr>
+<tr>
+<td>watch test</td>
+<td>
+
+```
+vitest watch
+```
+
+</td>
+<td>run unit tests in watch mode</td>
+</tr>
 </tbody>
 </table>
-
-
 
 ## Reference of technologies used
 
@@ -283,6 +317,7 @@ vite build
 - [React Oauth](https://www.npmjs.com/package/@react-oauth/google)
 - [Sass](https://sass-lang.com)
 - [Classnames](https://www.npmjs.com/package/classnames)
+- [React Calendar](https://www.npmjs.com/package/react-calendar)
 - [Redux DevTools Extension](https://github.com/zalmoxisus/redux-devtools-extension)
 - [Redux Thunk](https://github.com/reduxjs/redux-thunk)
 
@@ -292,111 +327,22 @@ vite build
 - Install extensions
     - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
     - [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+- create file at `.vscode/settings.json` from root of this repository and add the below snippet
 
-# ☑️ CI/CD <a name = "ci/cd"></a>
-
-
-## ▪️Build <a name = "build"></a>
-
-In our project, we have also implemented a similar approach for the build stage of our CI Pipeline. We have two distinct jobs: the frontend build job and the backend build job.
-
-
-## ▪️Test <a name = "test1"></a>
-
-we are using JUnit, a popular open-source testing framework for Java, to test our application. We have integrated JUnit tests into our CI pipeline by running the "mvn test" command, which invokes the Maven build tool to execute the tests.
-
-
-
-## ▪️Code Quality <a name = "code_quality"></a>
-
-The Continuous Integration (CI) Pipeline of the application includes a stage for code quality assurance, which covers both the frontend and backend code. 
-- Job1: The frontend code quality is ensured by integrating prettier into the pipeline, which checks for proper formatting of the codebase. 
-- Job2: The backend code quality is evaluated by running designated code smell tools, which generate reports of potential issues in the code. These code smell reports are then saved in artifacts, which can be downloaded later to analyze the code in detail.
-
-
-
-
-# ☑️ Test <a name = "test"></a>
-
-## ▪️Coverage <a name = "coverage"></a>
-Code coverage report was generated using IntelliJ. Our code coverage for service class is 85%.
-## ▪️Integration tests <a name = "integration_test"></a>
-We have written multiple integration tests.
-## ▪️Test best practices <a name = "test_best"></a>
-We have followed best practices for mocking the dependent classes. System under test is beign tested in isolation.
-## ▪️TDD adherence <a name = "tdd_adherance"></a> 
-For some of our APIs we have followed Test driven developement approach.
-
-# ☑️ Quality <a name = "quality"></a>
-
-## ▪️Design principles <a name = "design_principles"></a>
-
-
-<h4> Single Responsibility Principle </h4>
-
-<p> The Single Responsibility Principle dictates that a class should have a singular responsibility, promoting the separation of concerns and facilitating the modification, testing, and reuse of code. This principle is being adhered to in several instances where we are creating distinct controllers and services for various stakeholders. </p>
-
-<h4>Open/Closed Principle (OCP) </h4>
-
-<p>"A class should be open for extension but closed for modification" means that a class's behavior can be extended without modifying its source code. We have implemented this principle in our application by creating separate classes for different types of users. </p>
-
-<h4>Liskov Substitution Principle (LSP)</h4>
-
-<p>Subtypes should be able to replace their base types without changing the correctness of the program. As a result, we ensure that if any class implements an abstract class or interface, it can fully replace its parent class.</p>
-
-<h4>Interface Segregation Principle (ISP)</h4>
-
-<p>The Interface Segregation Principle advocates for the use of smaller, more specialized interfaces instead of larger, more complex ones. This approach enables easier maintenance, testing, and code reuse. To implement this principle, we have designed separate interfaces for specific tasks. For example, we have a dedicated mail service interface responsible solely for sending mails, without including unnecessary methods that users would have to implement during implementation. By segregating interfaces in this way, we ensure that our application remains organized and manageable.</p>
-
-<h4>Dependency Inversion Principle (DIP)</h4>
-
-<p>To promote modularity and extensibility, the principle suggests that modules should rely on abstractions such as interfaces and abstract classes. To reduce dependencies on individual classes and decouple the components, we employ numerous interfaces and classes. As we're using Spring Boot for our application, we don't need to be too concerned about this principle because the framework is based on SOLID principle.</p>
-
-
-## ▪️Architecture smells <a name = "architecture_smell"></a>
-
-### The detailed excel sheet can be found here 
-- The Excel sheet : [ArchitectureSmellsFinal.xlsx](./readme/ArchitectureSmellsFinal.xlsx)
-- Preview: 
-![Image](./readme/ArchitectureSmells.png)
-
-
-## ▪️Design smells <a name = "design_smell"></a>
-
-### The detailed excel sheet can be found here 
-- The Excel sheet : [DesignSmellsFinal.xlsx](./readme/DesignSmellsFinal.xlsx)
-- Preview:
-![Image](./readme/DesignSmells.png)
-
-
-## ▪️Implementation smells <a name = "implementation_smell"></a>
-
-### The detailed excel sheet can be found here 
-- The Excel sheet : [ImplementationSmellsFinal.xlsx](./readme/ImplementationSmellsFinal.xlsx)
-- Preview:
-![Image](./readme/ImplementationSmells.png)
-
-## ▪️Other clean code practices <a name = "other_clean"></a>
-1.  We've separated CSS and JavaScript for improved maintainability and readability.
-2.  Our vite.config.js is organized to enhance readability and manage different aspects of the build process efficiently.
-3.  In LoginSignup.constant.js, we've defined action types and string constants, adhering to the DRY principle and ensuring consistency.
-4.  Our reducers, like in LoginSignup.reducer.js, define an initial state, providing a clear understanding of our data structure and default values.
-5.  We use a clear structure with switch statements in our reducers for handling different action types, enhancing code readability.
-6.  Our action creators, as seen in LoginSingup.actions.js, provide a consistent method for dispatching actions, facilitating maintainability.
-7.  Across our files, we use descriptive variable and function names, making our code self-explanatory.
-8.  We've organized our files to separate concerns (constants, actions, reducer), aiding in maintainability and scalability.
-9.  We maintain a consistent coding style across all files to ensure readability and maintainability.
-10. In complex logic sections, like in our reducers, we use comments to clarify the purpose of code blocks.
-11. We use constants instead of hard-coded values to avoid magic numbers/strings, enhancing code readability and maintainability.1
-12. Our functions are designed to adhere to the Single Responsibility Principle.
-13. We ensure proper indentation and spacing in our code formatting for enhanced readability.
-14. We use arrow functions for a concise and modern approach in our JavaScript files.
-15. In our state management, as seen in reducers, we handle the state immutably, crucial for Redux-like architectures.
-16. We implement robust error handling mechanisms throughout our code.
-17. Consistent Naming Conventions: Our naming conventions are consistent, aiding in understanding the codebase.
-18. We separate logic (JS files) from presentation, following best practices in frontend development.
-19.  Our code utilizes modern JavaScript features, reflecting up-to-date and efficient coding practices.
-20. Our file structure is designed to be scalable, accommodating the growth of the project.
+```json
+{
+    "eslint.format.enable": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true 
+    },
+    "eslint.workingDirectories": [
+        {
+            "directory": "./ui",
+            "changeProcessCWd": true
+        }
+    ]
+}
+```
 
 # ☑️ Miscellaneous <a name = "miscellaneous"></a>
 
@@ -416,9 +362,11 @@ For some of our APIs we have followed Test driven developement approach.
 <p>• antd: ^5.9.4 - Ant Design, a design system with React UI library.</p>
 <p>• axios: ^1.5.1 - Promise-based HTTP client for browser and Node.js.</p>
 <p>• classnames: ^2.3.2 - Utility for conditionally joining classNames together.</p>
+<p>• create-vite: ^4.4.1 - Utility for creating new Vite projects.</p>
 <p>• eslint-config-react-app: ^7.0.1 - ESLint configuration used by Create React App.</p>
 <p>• node-sass: ^9.0.0 - Library providing Node.js bindings to LibSass.</p>
 <p>• react: ^18.2.0 - Library for building user interfaces.</p>
+<p>• react-calendar: ^4.6.1 - Calendar component for React.</p>
 <p>• react-dom: ^18.2.0 - DOM-specific methods for React.</p>
 <p>• react-redux: ^8.1.3 - Official React bindings for Redux.</p>
 <p>• react-router-dom: ^6.16.0 - DOM bindings for React Router.</p>
@@ -455,36 +403,7 @@ For some of our APIs we have followed Test driven developement approach.
 
 # ☑️ Screenshots (Features) <a name = "screenshots"></a>
 
-### Signin Page 
-![Image](./readme/Signin.png "Signin Page")
-
-### Signup page
-![Image](./readme/Signup.png "Signup page")
-
-### Forgot Password
-![Image](./readme/Forgotpw.png "Forgot Password")
-
-### Homepage
-![Image](./readme/Homepage.png "Homepage")
-
-### Add Category
-![Image](./readme/Addcategory.png "Add Category")
-
-### User Feed
-![Image](./readme/Userfeed.png "User Feed")
-
-### User Profile
-![Image](./readme/Userprofile.png "User Profile")
-
-### Add post 
-![Image](./readme/Addpost.png "Add post")
-
-### User Chat
-![Image](./readme/Userchat.png "User Chat")
-
-### Connections
-![Image](./readme/Connections.png "Connections")
-
+This will automatically fix lint errors and apply code format defined in eslint and prettier on save file event.
 
 # Features
 
@@ -496,4 +415,6 @@ For some of our APIs we have followed Test driven developement approach.
 - Freya Jayant Vora (B00) - @dal.ca
 - Mohammad Faizan (B00) - @dal.ca
 
+## License
 
+This project is licensed under the MIT License.

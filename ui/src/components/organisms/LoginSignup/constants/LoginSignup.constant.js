@@ -21,7 +21,7 @@ export const TOASTER_MSG = {
   LOGIN_FAILURE: 'Error occured while logging in.',
   FAILED_WHILE_FETCHING_USER_DATA: 'Failed to fetch user data',
   LOGIN_FAILED: 'Login failed !',
-  PASS_RESET_EMAIL_SENT: 'Password reset email sent successfully',
+  PASS_RESET_EMAIL_SENT: 'Password has been reset successfully',
   PASS_RESET_FAILED: 'Password reset failed. Please try again.',
   IF_USER_EXISTS_WILL_SENT_LINK: 'If the user exists, we will send you the reset link',
   ENTER_VALID_USERNAME: 'Please enter a valid username.',

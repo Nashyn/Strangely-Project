@@ -3,7 +3,7 @@ import React, { memo } from 'react';
 /* external imports */
 import { PropTypes } from 'prop-types';
 import moment from 'moment';
-// import { getOrCreateChat } from 'react-chat-engine';
+
 import {
   Menu,
   Dropdown,
@@ -45,9 +45,6 @@ function Post({
     images = EMPTY_ARRAY,
     postDate = EMPTY_STRING,
     postId = EMPTY_STRING,
-    likeCount = EMPTY_STRING,
-    dislikeCount = EMPTY_STRING,
-    loveCount = EMPTY_STRING,
   } = post || EMPTY_OBJECT;
 
   const isUserPost = userData?.userName === username;
@@ -135,10 +132,7 @@ function Post({
         className={styles.postFooter}
       >
         <Reactions
-          postId={postId}
-          likeCount={likeCount}
-          dislikeCount={dislikeCount}
-          loveCount={loveCount}
+          post={post}
           fetchAllPosts={fetchAllPosts}
         />
       </div>

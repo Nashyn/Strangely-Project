@@ -1,4 +1,5 @@
 export const baseURL = 'http://172.17.1.123:8073';
+export const chatEngineUrl = 'https://api.chatengine.io';
 
 export const loginSignupService = {
   userRegistration: `${baseURL}/registerSS`,
@@ -30,8 +31,9 @@ export const homeService = {
 };
 
 export const chatService = {
-  getMeAsUser: 'https://api.chatengine.io/users/me/',
-  createMeAsUser: 'https://api.chatengine.io/users/',
+  getMeAsUser: `${chatEngineUrl}/users/me/`,
+  createMeAsUser: `${chatEngineUrl}/users/`,
+  createGroup: `${chatEngineUrl}/chats/`,
 };
 
 export const homePageService = {

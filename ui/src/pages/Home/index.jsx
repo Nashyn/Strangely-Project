@@ -24,7 +24,6 @@ import withSidebar from '../../resources/shared/hoc/sidebar';
 import GeoFetch from '../../components/molecules/geoFetch';
 /* constant */
 import {
-  // ACTIVITIES,
   TOASTER_MSG,
 } from './constants/Home.constant';
 import {
@@ -74,7 +73,7 @@ function Home({ onUpdateAreaId = EMPTY_FUNCTION }) {
     };
     getAreaId(payload)
       .then((response) => {
-        onUpdateAreaId(response?.data?.area_id);
+        onUpdateAreaId(response?.data?.area_id || 1);
       })
       .catch(() => {
         message.error(TOASTER_MSG.FAILED_TO_GET_AREA_ID);

@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react';
 /* external imports */
 import { PropTypes } from 'prop-types';
-import { useNavigate } from 'react-router-dom';
+import {
+  useSelector,
+} from 'react-redux';
+import {
+  useNavigate,
+} from 'react-router-dom';
 import {
   LikeOutlined,
   DislikeOutlined,
@@ -12,88 +17,78 @@ import styles from './Reactions.module.scss';
 /* constants */
 import {
   EMPTY_FUNCTION,
+  EMPTY_OBJECT,
   EMPTY_STRING,
 } from '../../../../resources/shared/global.constant';
+import {
+  REACTION_TYPE,
+} from './constant/Reaction.constant';
 /* service */
 import {
-  addLike,
-  addDislike,
-  addLove,
-  removeLike,
-  removeDislike,
-  removeLove,
-} from '../Post/service/Post.service';
+  getReactionApi,
+} from './service/Reactions.service';
+import { createDirectMsg } from '../../../Chat/service/Chat.service';
 
 function Reaction({
-  postId = false,
-  likeCount = EMPTY_STRING,
-  dislikeCount = EMPTY_STRING,
-  loveCount = EMPTY_STRING,
+  post = EMPTY_OBJECT,
   fetchAllPosts = EMPTY_FUNCTION,
 }) {
+  const {
+    postId = EMPTY_STRING,
+    likeCount = EMPTY_STRING,
+    dislikeCount = EMPTY_STRING,
+    loveCount = EMPTY_STRING,
+    username = EMPTY_STRING,
+  } = post || EMPTY_OBJECT;
+
+  const navigate = useNavigate();
+  const userData = useSelector(state => state.loginSignupReducer.userData);
   const [liked, setLiked] = useState(false);
   const [loved, setLoved] = useState(false);
   const [disliked, setDisliked] = useState(false);
-  const navigate = useNavigate();
+
   useEffect(() => {
     setLiked(likeCount > 0);
     setDisliked(dislikeCount > 0);
     setLoved(loveCount > 0);
   }, []);
-  const handleLike = () => {
-    if (dislikeCount) {
-      removeDislike(postId);
-    }
-    if (!likeCount) {
-      addLike(postId);
-    } else {
-      removeLike(postId);
-    }
-    setTimeout(() => {
-      fetchAllPosts();
-    }, 1000);
+
+  const onHandleReaction = ({
+    type = EMPTY_STRING,
+  }) => {
+    const reactionApi = getReactionApi({
+      type,
+    });
+    reactionApi({
+      postId,
+      likeCount,
+      loveCount,
+      dislikeCount,
+      fetchAllPosts,
+    });
   };
 
-  const handleLove = () => {
-    if (dislikeCount) {
-      removeDislike(postId);
-    }
-
-    if (!loveCount) {
-      addLove(postId);
-    } else {
-      removeLove(postId);
-    }
-    setTimeout(() => {
-      fetchAllPosts();
-    }, 1000);
+  const handleChatClick = async () => {
+    const payload = {
+      is_direct_chat: true,
+      usernames: [username],
+    };
+    await createDirectMsg({
+      payload,
+      userData,
+    });
+    navigate('/chat');
   };
 
-  const handleDislike = () => {
-    if (likeCount) {
-      removeLike(postId);
-    }
-
-    if (loveCount) {
-      removeLove(postId);
-    }
-
-    if (!dislikeCount) {
-      addDislike(postId);
-    } else {
-      removeDislike(postId);
-    }
-    setTimeout(() => {
-      fetchAllPosts();
-    }, 1000);
-  };
   return (
     <div className={styles.postOptions}>
       <div
         role="button"
         tabIndex="0"
         className={styles.postOption}
-        onClick={handleLike}
+        onClick={() => onHandleReaction({
+          type: REACTION_TYPE.LIKE,
+        })}
       >
         <LikeOutlined
           style={{
@@ -109,7 +104,9 @@ function Reaction({
         role="button"
         tabIndex="0"
         className={styles.postOption}
-        onClick={handleDislike}
+        onClick={() => onHandleReaction({
+          type: REACTION_TYPE.DISLIKE,
+        })}
       >
         <DislikeOutlined
           style={{
@@ -125,7 +122,9 @@ function Reaction({
         role="button"
         tabIndex="0"
         className={styles.postOption}
-        onClick={handleLove}
+        onClick={() => onHandleReaction({
+          type: REACTION_TYPE.LOVE,
+        })}
       >
         <HeartOutlined
           style={{
@@ -137,23 +136,22 @@ function Reaction({
         />
         <span>{loveCount} Love</span>
       </div>
-      <div
-        role="button"
-        tabIndex="0"
-        className={styles.postOption}
-        onClick={() => navigate('/chat')}
-      >
-        <span>Chat 💬 </span>
-      </div>
+      {((username || '') !== (userData?.userName)) && (
+        <div
+          role="button"
+          tabIndex="0"
+          className={styles.postOption}
+          onClick={handleChatClick}
+        >
+          <span>Chat 💬 </span>
+        </div>
+      )}
     </div>
   );
 }
 
 Reaction.propTypes = {
-  postId: PropTypes.any.isRequired,
-  likeCount: PropTypes.string.isRequired,
-  dislikeCount: PropTypes.string.isRequired,
-  loveCount: PropTypes.string.isRequired,
+  post: PropTypes.any.isRequired,
   fetchAllPosts: PropTypes.func.isRequired,
 };
 

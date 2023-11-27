@@ -6,7 +6,7 @@ import { Drawer } from 'antd';
 import { useNavigate, useLocation } from 'react-router-dom';
 import SidebarRow from './SidebarRow';
 /* internal component */
-import UserSetting from '../../../UserSetting';
+import UserSetting from '../../../../components/molecules/UserSetting';
 /* styles */
 import styles from './Sidebar.module.scss';
 

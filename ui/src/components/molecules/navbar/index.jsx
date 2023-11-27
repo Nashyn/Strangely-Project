@@ -10,8 +10,6 @@ import {
   useNavigate,
 } from 'react-router-dom';
 import {
-  // UserOutlined,
-  // WechatOutlined,
   HomeOutlined,
   TeamOutlined,
 } from '@ant-design/icons';
@@ -30,15 +28,12 @@ import { TOASTER_MSG } from '../../organisms/LoginSignup/constants/LoginSignup.c
 import { logoutUser } from '../../organisms/LoginSignup/service/LoginSignup.service';
 /* actions */
 import { resetAllData } from '../../organisms/LoginSignup/data/LoginSingup.actions';
-// /* internal component */
-// import UserSetting from '../../../pages/UserSetting';
 
 function Navbar() {
   const userData = useSelector(state => state.loginSignupReducer.userData);
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
-  // const [isDrawerVisible, setIsDrawerVisible] = useState(false);
 
   const handleLogout = () => {
     const { userName = '', token = '' } = userData;

@@ -14,7 +14,6 @@ import Routes from './routes/route';
 const rootElement = document.getElementById('root');
 const root = ReactDOM.createRoot(rootElement);
 
-// eslint-disable-next-line no-console
 root.render(
   <ErrorBoundary>
     <Provider store={store}>

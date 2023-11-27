@@ -13,7 +13,7 @@ const initialState = {
   phoneNumber: '',
   checkinType: '',
   userData: '',
-  area_id: '',
+  area_id: 1,
 };
 
 const loginSignupReducer = (state = initialState, { type, payload }) => {

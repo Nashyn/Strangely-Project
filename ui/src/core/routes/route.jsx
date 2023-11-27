@@ -4,7 +4,6 @@ import { Route, Routes } from 'react-router-dom';
 
 /* internal components */
 import Home from '../../pages/Home';
-// import PostPage from '../../pages/Postpage/Components/Post/Post';
 import Feed from '../../pages/Postpage/Components/feed';
 import App from '../App';
 import PageNotFound from '../configs/PageNotFound';

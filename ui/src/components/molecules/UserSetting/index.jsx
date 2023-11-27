@@ -3,10 +3,10 @@ import _get from 'lodash/get';
 import { useSelector, useDispatch } from 'react-redux';
 import { message } from 'antd';
 import axios from 'axios';
-import { updateUserData } from '../../components/organisms/LoginSignup/data/LoginSingup.actions';
-import { EMPTY_OBJECT } from '../../resources/shared/global.constant';
-import Utility from '../../utils/Utility';
-import { loginSignupService } from '../../services/urls';
+import { updateUserData } from '../../organisms/LoginSignup/data/LoginSingup.actions';
+import { EMPTY_OBJECT } from '../../../resources/shared/global.constant';
+import Utility from '../../../utils/Utility';
+import { loginSignupService } from '../../../services/urls';
 import styles from './UserSetting.module.scss';
 
 function UserSetting() {

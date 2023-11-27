@@ -49,28 +49,25 @@ function Feed({
       onResetAllData();
     };
   }, []);
-  // eslint-disable-next-line no-unused-vars
   const { categoryId } = useParams();
   const [isLoading, setLoading] = useState(false);
   const [editPost, setEditPost] = useState(null);
-  const fetchAllPosts = useCallback(() => {
+
+  const fetchAllPosts = useCallback(async () => {
     setLoading(true);
     const payload = {
       post_category_id: categoryId || '',
       area_id,
     };
-    getAllPostsByCategoryAndArea(payload)
-      .then((data) => {
-        onFetchAllPosts(data?.data || EMPTY_ARRAY);
-      })
-      .catch(() => {
-        message.error(TOASTER_MSG.FETCH_ALL_POST_FAILURE);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    try {
+      const data = await getAllPostsByCategoryAndArea(payload);
+      onFetchAllPosts(data?.data || EMPTY_ARRAY);
+    } catch (error) {
+      message.error(TOASTER_MSG.FETCH_ALL_POST_FAILURE);
+    } finally {
+      setLoading(false);
+    }
   }, []);
-
   const handleEditClick = (post) => {
     setEditPost(post);
   };
@@ -123,7 +120,7 @@ Feed.propTypes = {
 };
 
 Feed.defaultProps = {
-  area_id: EMPTY_STRING,
+  area_id: 1,
   allPosts: EMPTY_ARRAY,
   onFetchAllPosts: EMPTY_FUNCTION,
   onResetAllData: EMPTY_FUNCTION,

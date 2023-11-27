@@ -11,7 +11,9 @@ import { message } from 'antd';
 import {
   PictureOutlined,
 } from '@ant-design/icons';
-import { useParams } from 'react-router-dom';
+import {
+  useParams,
+} from 'react-router-dom';
 import TextareaAutosize from 'react-textarea-autosize';
 /* styles */
 import styles from './MessageSender.module.scss';
@@ -23,6 +25,7 @@ import {
 } from '../../../../resources/shared/global.constant';
 /* service */
 import {
+  createGroupAsPerPost,
   createPost,
 } from './service/MessageSender.service';
 import {
@@ -33,9 +36,7 @@ import {
 import { updatePosts } from '../../data/PostPage.actions';
 import { TOASTER_MSG } from '../../constants/PostPage.constant';
 /* utils */
-import {
-  toBase64,
-} from './utils/MessageSender.util';
+import MessageSenderUtils from './utils/MessageSender.util';
 import Utility from '../../../../utils/Utility';
 
 function MessageSender({
@@ -65,23 +66,36 @@ function MessageSender({
   const fileInput = useRef(null);
 
   const {
-    userName = '',
+    userName = EMPTY_STRING,
   } = userData || EMPTY_OBJECT;
   const { categoryId } = useParams();
 
+  const createAutoGroup = async () => {
+    const descriptionSummary = MessageSenderUtils.getSummaryText({
+      description: postContent || EMPTY_STRING,
+    });
+    try {
+      await createGroupAsPerPost({
+        descriptionSummary,
+        userData,
+      });
+    } catch (error) {
+      message.error(TOASTER_MSG.FAILED_TO_CREATE_GROUP);
+    }
+  };
+
   const handleCreatePost = async (payload) => {
     setLoading(true);
-    createPost(payload)
-      .then((response) => {
-        message.success(response?.data?.status || EMPTY_STRING);
-        fetchAllPosts();
-      })
-      .catch(() => {
-        message.error(TOASTER_MSG.CREATE_POST_FAILURE);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    try {
+      const response = await createPost(payload);
+      message.success(response?.data?.status || EMPTY_STRING);
+      await fetchAllPosts();
+      await createAutoGroup();
+    } catch (error) {
+      message.error(TOASTER_MSG.CREATE_POST_FAILURE);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleEditPost = async (payload) => {
@@ -103,7 +117,7 @@ function MessageSender({
 
     let base64Image = null;
     if (image && !Utility.isObjectDefined(editPost)) {
-      base64Image = await toBase64(image);
+      base64Image = await MessageSenderUtils.toBase64(image);
     } else {
       base64Image = image;
     }
@@ -245,7 +259,7 @@ MessageSender.propTypes = {
 
 MessageSender.defaultProps = {
   userData: EMPTY_OBJECT,
-  area_id: EMPTY_STRING,
+  area_id: 1,
   editPost: EMPTY_OBJECT,
   setLoading: EMPTY_FUNCTION,
   fetchAllPosts: EMPTY_FUNCTION,
