@@ -134,7 +134,63 @@ Strangely is designed to create a comfortable and welcoming platform for people 
 - **One-on-One Communication:** Users can directly message anyone within the platform. This allows for private and direct communication between users.
 
 <br> <hr>
-## Backend Setup
+# Strangely - Backend
+
+
+## Prerequisites
+
+- [Java 17](https://www.oracle.com/java/technologies/downloads/#jdk17-windows)
+- [Maven 3.9.5](https://maven.apache.org/download.cgi)
+- [Lombok 1.18.22](https://projectlombok.org/)
+- [SQL](https://dev.mysql.com/downloads/workbench/)
+
+```
+## Getting Started
+Follow these steps to set up and run the project locally.
+
+### 1. Clone the Repository
+```bash
+ git clone git@git.cs.dal.ca:courses/2023-fall/csci-5308/Group14.git 
+ OR
+ git clone https://git.cs.dal.ca/courses/2023-fall/csci-5308/Group14.git
+```
+### 2. Navigate to the project directory
+```bash
+cd Group14/Backend
+```
+## Commands
+
+<table>
+<tbody>
+<tr>
+<th>&nbsp;title</th>
+<th>command</th>
+<th>&nbsp;description</th>
+</tr>
+<tr>
+<td>build/td>
+<td>
+
+```
+mvn clean install -Dskiptests
+```
+
+</td>
+<td>Load Dependencies and build project</td>
+</tr>
+<tr>
+<td>Run on localhost</td>
+<td>
+
+```
+Run the 'main' function BackendApplication class present in BackendApplication.java
+```
+
+</td>
+<td>Will run the backend application on localhost:8080. To run any api just hit "http://localhost:8080/api_url" with required body</td>
+</tr>
+</tbody>
+</table>
 
 ### Libraries Used
 
@@ -207,10 +263,25 @@ The backend utilizes a range of libraries, including:
 - spring.mail.properties.mail.smtp.starttls.required
 - mail.smtp.starttls.enable
 
-### Prerequisites
+### References of technologies used:
+- [Spring Boot](https://spring.io/projects/spring-boot)
+- [Spring Framework](https://spring.io/projects/spring-framework)
+- [Spring Security](https://spring.io/projects/spring-security)
+- [Spring LDAP](https://spring.io/projects/spring-ldap)
+- [Spring Cloud](https://spring.io/projects/spring-cloud)
+- [MySql Connector/](https://dev.mysql.com/doc/connector-j/en)
+- [Project Lombok](https://projectlombok.org/)
+- [MapStruct](https://mapstruct.org)
+- [Jakarta Validation API](https://jakarta.ee/specifications/validation/3.0/)
+- [Java JWT](https://github.com/auth0/java-jwt)
+- [Firebase Admin SDK](https://firebase.google.com/docs/admin/setup)
+- [Apache Velocity](https://velocity.apache.org/engine/1.7/user-guide.html)
+- [Junit](https://junit.org/junit4/)
+- [Mockito](https://site.mockito.org)
 
-- Java JDK 17
-- Maven: `v4.9.4`
+***
+
+# Strangely - UI
 
 ### Getting Started
 
@@ -236,26 +307,6 @@ npm dev
 or
 yarn dev
 ```
-### References of technologies used:
-- [Spring Boot](https://spring.io/projects/spring-boot)
-- [Spring Framework](https://spring.io/projects/spring-framework)
-- [Spring Security](https://spring.io/projects/spring-security)
-- [Spring LDAP](https://spring.io/projects/spring-ldap)
-- [Spring Cloud](https://spring.io/projects/spring-cloud)
-- [MySql Connector/](https://dev.mysql.com/doc/connector-j/en)
-- [Project Lombok](https://projectlombok.org/)
-- [MapStruct](https://mapstruct.org)
-- [Jakarta Validation API](https://jakarta.ee/specifications/validation/3.0/)
-- [Java JWT](https://github.com/auth0/java-jwt)
-- [Firebase Admin SDK](https://firebase.google.com/docs/admin/setup)
-- [Apache Velocity](https://velocity.apache.org/engine/1.7/user-guide.html)
-- [Junit](https://junit.org/junit4/)
-- [Mockito](https://site.mockito.org)
-***
-
-# Strangely - UI
-
-
 ## Prerequisites
 
 - [NodeJS](https://nodejs.org/en) `v18.x`
@@ -310,64 +361,6 @@ vite build
 
 </td>
 <td>generates bundle files in <u>build</u> directory</td>
-</tr>
-</tbody>
-</table>
-
-# Strangely - Backend
-
-
-## Prerequisites
-
-- [Java 17](https://www.oracle.com/java/technologies/downloads/#jdk17-windows)
-- [Maven 3.9.5](https://maven.apache.org/download.cgi)
-- [Lombok 1.18.22](https://projectlombok.org/)
-- [SQL](https://dev.mysql.com/downloads/workbench/)
-
-```
-## Getting Started
-Follow these steps to set up and run the project locally.
-
-### 1. Clone the Repository
-```bash
- git clone git@git.cs.dal.ca:courses/2023-fall/csci-5308/Group14.git 
- OR
- git clone https://git.cs.dal.ca/courses/2023-fall/csci-5308/Group14.git
-```
-### 2. Navigate to the project directory
-```bash
-cd Group14/Backend
-```
-## Commands
-
-<table>
-<tbody>
-<tr>
-<th>&nbsp;title</th>
-<th>command</th>
-<th>&nbsp;description</th>
-</tr>
-<tr>
-<td>build/td>
-<td>
-
-```
-mvn clean install -Dskiptests
-```
-
-</td>
-<td>Load Dependencies and build project</td>
-</tr>
-<tr>
-<td>Run on localhost</td>
-<td>
-
-```
-Run the 'main' function BackendApplication class present in BackendApplication.java
-```
-
-</td>
-<td>Will run the backend application on localhost:8080. To run any api just hit "http://localhost:8080/api_url" with required body</td>
 </tr>
 </tbody>
 </table>
