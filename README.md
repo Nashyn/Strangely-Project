@@ -133,6 +133,10 @@ Strangely is designed to create a comfortable and welcoming platform for people 
 
 - **One-on-One Communication:** Users can directly message anyone within the platform. This allows for private and direct communication between users.
 
+To easily understand use case scenario we have created the Use Case UML diagram
+
+![Image](./readme/Strangely_USECASE_Scenario_4.jpeg "Use Case Diagram")
+
 <br> <hr>
 # Strangely - Backend
 
